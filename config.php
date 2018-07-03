@@ -3,7 +3,7 @@ $ser="localhost";
 $user="root";
 $pass="";
 
-$db="app_php";
+$db="app_php1";
 
 $conn=new mysqli($ser,$user,$pass,$db);
 
