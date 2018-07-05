@@ -1,3 +1,72 @@
+<?php
+if(isset($_POST["log"]))
+
+{
+	
+	
+	$em=$_POST["em"];
+	
+	$pass=$_POST["pass"];
+	
+	
+	$sel="select * from user where email='$em' and password='$pass'";
+	
+	
+	$ex=$conn->query($sel);
+	
+	
+	$fet=$ex->fetch_array();
+	
+	$no=$ex->num_rows;
+	
+	
+	if($no==1)
+	
+	{
+		
+	  $_SESSION["uid"]=$fet["uid"];
+	  
+	  $_SESSION["em"]=$fet["email"];
+	  
+	  
+	  echo "<script>
+	  
+	  alert('You are Logged In Succefully')
+	  
+	  window.location='showuser.php';
+	  
+	  </script>";	
+	 	
+		
+		
+	}
+	
+	
+	else
+	
+	
+	{
+		
+		
+	  echo "<script>
+	  
+	  alert('You email Id and Password are Incorect')
+	  
+	  window.location='index.php';
+	  
+	  </script>";	
+		
+		
+	}
+	
+	
+}
+
+
+
+
+?>
+
 
     
  <!---Login modal-------->
@@ -40,6 +109,8 @@
   <div class="form-group">
   
   <input type="submit" name="log" value="Login" class="btn btn-block btn-success" >
+  
+  <h3 align="center"><a href="forgetpassword.php">Forget Password</a></h3>
 
   </div>
   

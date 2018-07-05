@@ -1,6 +1,60 @@
 <?php
 include("config.php");
 
+ if(isset($_POST["frg"]))
+ 
+ {
+	  
+	  $em=$_POST["em"];
+	  
+	  $sel="select password from user where email='$em'";
+	  
+	  $ex=$conn->query($sel);
+	  
+	  $fet=$ex->fetch_array();
+	  
+	  $no=$ex->num_rows;
+	  
+	  
+	  if($no==1)
+	  
+	  
+	  {
+		  
+		   $p=$fet["password"];  
+		  
+		  
+		  
+		  echo "<script>
+		  alert('Your password is :' + '' + '$p')
+		  
+		  window.location='index.php';
+		  
+		  
+		  </script>";
+		  
+	  }
+	 
+	 
+	 else
+	 
+	 {
+		 
+		  echo "<script>
+		  alert('Your Email Id does not exist in Database Try again')
+		  
+		  window.location='forgetpassword.php';
+		  
+		  
+		  </script>";
+		 
+	 }
+	 
+	 
+ }
+ 
+ 
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -43,8 +97,6 @@ include("header.php");
 include("menu.php");
 
 ?>
-<br />
-<br />
 
 <div class="content">
 <div class="container-fluid">
@@ -53,29 +105,37 @@ include("menu.php");
 
 <div id="address">
 <center>
-<address style="font-size:20px; letter-spacing:3px; color:#F60">
-
-<h3 align="center">My First Application</h3>
+<h2 align="center">Forget Password</h2>
 
 
-<b>Contact Us :<span class="fa fa-mobile"></span>(+91)9173xxxxxxx</b><br />
+<div class="col-md-6 col-xs-12 col-md-offset-3">
 
 
+  <form method="post">  
 
-<b>Email :<span class="fa fa-inbox"></span><a href="mailto:bkpandey.pandey@gmail.com">bkpandey.pandey@gmail.com</a></b><br />
+  
+  
+  <div class="form-group">
+  <label>Enter Your Email *:</label>
+  <input type="text" name="em" required placeholder="Enter email" class="form-control">
 
+  </div>
+  
+  
+  
+  
+  <div class="form-group">
+  
+  <input type="submit" name="frg" value="Submit" class="btn btn-block btn-success" >
+  
 
-<b style="word-wrap:break-word !important; font-size:16px">Website :<span class="fa fa-internet-explorer"></span><a target="_blank" href="http://onlineportfolio.byethost14.com">www.onlineportfolio.byethost14.com</a></b><br />
+  </div>
+  
+  
+  
+  </form>
 
-
-<h2 align="center"><u>Get in Touch with Us</u></h2>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59301.24199966037!2d70.42525938181647!3d21.728820753253835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39581e16560474af%3A0x3bd763433745a173!2sDhoraji%2C+Gujarat+360410!5e0!3m2!1sen!2sin!4v1530266021338" width="500" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
-
-
-</address>
-
+</div>
 </center>
 </div>
 
