@@ -1,4 +1,73 @@
+<?php
+if(isset($_POST["log"]))
 
+{
+   
+   $em=$_POST["em"];
+   $pass=$_POST["pass"];	
+	
+	
+	$sel="select * from user where email='$em' and password='$pass'";
+	
+	$ex=$conn->query($sel);
+	
+	$fet=$ex->fetch_array();
+	
+	$no=$ex->num_rows;
+	
+	if($no==1)
+	
+	
+	{
+		
+	  
+	  
+	  $_SESSION["uid"]=$fet["uid"];
+	  
+	  
+	  $_SESSION["em"]=$fet["email"];
+	  
+	  
+	  $_SESSION["uname"]=$fet["username"];
+	  
+	  
+	  echo "<script>
+	  
+	  alert('You are Logged in! succefully')
+	  
+	  
+	  window.location='showalluser.php';
+	  
+	  </script>";
+	  
+	  	
+		
+		
+	}
+	
+	
+	
+	else
+	{
+		
+		  
+	  echo "<script>
+	  
+	  alert('Sorry Email Id! and Password are Incorect try again')
+	  
+	  
+	  window.location='index.php';
+	  
+	  </script>";
+	  
+		
+	}
+}
+
+
+
+
+?>
     
  <!---Login modal-------->
  
@@ -36,6 +105,13 @@
 
   </div>
   
+  
+  
+  <div class="form-group" style="display:none">
+  <label>Enter Name *:</label>
+  <input type="text" name="uname"  placeholder="Enter Name" class="form-control">
+
+  </div>
   
   <div class="form-group">
   
